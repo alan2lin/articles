@@ -1,0 +1,10 @@
+  digraph G {
+   graph [
+rankdir = "LR"
+];
+    aize ="4,5"; 
+   node[shape=box];
+   bt[label="Byte Codes"];
+   machinecode[label="Machine Code"];
+   bt->HIR->LIR->machinecode;
+} 

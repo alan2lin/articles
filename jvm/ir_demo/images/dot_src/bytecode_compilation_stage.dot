@@ -1,0 +1,14 @@
+  digraph G {
+    aize ="4,4";
+    Interpreter [label="解释器" shape=box];
+    C1 [shape=box];
+    C2 [shape=box];
+    Deoptimization [shape=retangle];
+    CC[label="Code cache"];    
+    Interpreter -> C1 [weight=8];
+    C1 -> C2 [weight=8];
+    C1 -> CC [weight=8];
+    C2 -> CC [weight=8];
+    CC->Deoptimization[weight=8];
+    Deoptimization->Interpreter[weight=8];
+  }

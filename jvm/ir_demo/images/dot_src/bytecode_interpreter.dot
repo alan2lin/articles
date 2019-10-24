@@ -1,0 +1,26 @@
+  digraph G {
+graph [
+rankdir = "LR"
+];
+    aize ="4,5"; 
+  subgraph clusterA {
+    label="jvm启动初始化时";
+    tt[label="<f0>templatetable| <f1> bytecode -- template parameter " shape=record];  
+    tg[label="<f0>templatgenerator| <f1> for x86 | for arm | ... " shape=record];      
+    tt:f1 -> tg:f1;   
+      subgraph clusterC {
+        label="code cache"; 
+        cl[label="<f0>interpreter codelet| <f1>... | <f2>code | ... " shape=record];  
+       }
+     tg:f1 -> cl:f2;
+  }
+  subgraph clusterB {
+    label="jvm运行时"; 
+    rf [label="<f0>runtime.frame| <f1> pc | <f2> codeblob " shape=record]; 
+    ip [label="<f0>解释器| <f1> 字节码表 | <f2> 转发表 " shape=record];
+  }
+   rf:f1->ip:f1[color=red label=" 指针指向的值转成 字节码对象 "];
+   ip:f1->ip:f2[color=red label=" 字节码对象 对应的 代码片段 "];
+   ip:f2-> cl:f2[color=red label=" 根据分发关系找到对应的代码片段 "];
+cl:f2->rf:f2[color=red label=" 字节码对象 对应的 代码片段 设置给cb指针 " style=dashed];
+} 

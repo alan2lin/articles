@@ -1,0 +1,6 @@
+  digraph G {
+    aize ="4,4";
+    graph[rankdir="LR"];
+    node[shape=box];
+    字节码->分割成block->构建成图->基于图优化->输出成HIR;
+  }

@@ -231,23 +231,10 @@ SourceFile: "Hello.java"
 
 
 
-字节码优化运行过程   
-![Alt text](https://g.gravizo.com/svg?
-  digraph G {
-    aize ="4,4";
-    Interpreter [label="解释器" shape=box];
-    C1 [shape=box];
-    C2 [shape=box];
-    Deoptimization [shape=retangle];
-    CC[label="Code cache"];    
-    Interpreter -> C1 [weight=8];
-    C1 -> C2 [weight=8];
-    C1 -> CC [weight=8];
-    C2 -> CC [weight=8];
-    CC->Deoptimization[weight=8];
-    Deoptimization->Interpreter[weight=8];
-  }
-)
+字节码优化运行过程
+
+![bytecode_compilation_stage](./images/dot_dest/bytecode_compilation_stage.svg)
+
 
 
 先由解释器 对字节码解释执行，当jvm的采样到的数据足够出发优化的时候，将会触发优化过程，以函数为单位，进行代码块优化。
@@ -267,34 +254,7 @@ SourceFile: "Hello.java"
 
 
 字节码解释执行的过程    
-![Alt text](https://g.gravizo.com/svg?
-  digraph G {
-graph [
-rankdir = "LR"
-];
-    aize ="4,5"; 
-  subgraph clusterA {
-    label="jvm启动初始化时";
-    tt[label="<f0>templatetable| <f1> bytecode -- template parameter " shape=record];  
-    tg[label="<f0>templatgenerator| <f1> for x86 | for arm | ... " shape=record];      
-    tt:f1 -> tg:f1;   
-      subgraph clusterC {
-        label="code cache"; 
-        cl[label="<f0>interpreter codelet| <f1>... | <f2>code | ... " shape=record];  
-       }
-     tg:f1 -> cl:f2;
-  }
-  subgraph clusterB {
-    label="jvm运行时"; 
-    rf [label="<f0>runtime.frame| <f1> pc | <f2> codeblob " shape=record]; 
-    ip [label="<f0>解释器| <f1> 字节码表 | <f2> 转发表 " shape=record];
-  }
-   rf:f1->ip:f1[color=red label=" 指针指向的值转成 字节码对象 "];
-   ip:f1->ip:f2[color=red label=" 字节码对象 对应的 代码片段 "];
-   ip:f2-> cl:f2[color=red label=" 根据分发关系找到对应的代码片段 "];
-cl:f2->rf:f2[color=red label=" 字节码对象 对应的 代码片段 设置给cb指针 " style=dashed];
-} 
-)
+![bytecode_compilation_stage](./images/dot_dest/bytecode_interpreter.svg)
 
 frame的结构 
 
@@ -390,18 +350,8 @@ jdk10_repo/hotspot/src/cpu/x86/vm/templateTable_x86.cpp  line 325
 -----------
 编译的过程 
 
-![Alt text](https://g.gravizo.com/svg?
-  digraph G {
-   graph [
-rankdir = "LR"
-];
-    aize ="4,5"; 
-   node[shape=box];
-   bt[label="Byte Codes"];
-   machinecode[label="Machine Code"];
-   bt->HIR->LIR->machinecode;
-} 
-)
+![bytecode_compilation_stage](./images/dot_dest/c1_process.svg)
+
 
 运行命令 查看IR信息
 <pre> 
@@ -852,18 +802,11 @@ void BlockListBuilder::set_leaders() {
 
 
 
-理论上这个过程大致过程如下:   
-![Alt text](https://g.gravizo.com/svg?
-  digraph G {
-    aize ="4,4";
-    graph[rankdir="LR"];
-    node[shape=box];
-    字节码->分割成block->构建成图->基于图优化->输出成HIR;
-  }
-)
+理论上这个过程大致过程如下: 
 
+![bytecode_compilation_stage](./images/dot_dest/c1_process_detail.svg)    
 
-
+ 
 
 
 
