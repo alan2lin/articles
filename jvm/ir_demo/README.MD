@@ -5,10 +5,14 @@ java执行过程之HIR
 
 环境准备工作
 ----------
-工作环境ubuntu 19.04    
-工作目录 ~/data/repo
+工作环境ubuntu 21.04    
+工作目录 
+` sudo mkdir -p /data/repo ` 
 
 安装版本工具 
+` sudo apt install git `
+sudo apt-get -y  install libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev systemtap-sdt-dev libcups2-dev libfreetype6-dev libasound2-dev libfontconfig1-dev
+
 
 下载jdk,方式1 一般都是会中断的，建议用方式二     
 方式一    
