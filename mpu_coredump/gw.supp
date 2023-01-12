@@ -1,0 +1,1352 @@
+# Memcheck, a memory error detector
+# Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+# Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+# Command: /opt/blitz/mps/blitz_mpu 20001 8501
+# Parent PID: 23797
+# 
+# Syscall param fcntl(fd) contains uninitialised byte(s)
+#    at 0x5ABC614: fcntl (in /usr/lib64/libpthread-2.17.so)
+#    by 0x5294F7: blitz::mpu::TransportModule::PrepareMediaSocket(int) (transport.cc:59)
+#    by 0x529F12: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:250)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x544E39: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:94)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   fcntl(fd)
+   fun:fcntl
+   fun:_ZN5blitz3mpu15TransportModule18PrepareMediaSocketEi
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4F0ED9F: google::protobuf::MessageLite::SerializePartialToArray(void*, int) const (message_lite.cc:333)
+#    by 0x50E0CC: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:321)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZNK6google8protobuf11MessageLite23SerializePartialToArrayEPvi
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x56F698: google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(unsigned int, unsigned char*) (coded_stream.h:1194)
+#    by 0x57762E: unsigned char* google::protobuf::internal::WireFormatLite::InternalWriteMessageNoVirtualToArray<blitz::mpu::proto::MpuRequest>(int, blitz::mpu::proto::MpuRequest const&, bool, unsigned char*) (wire_format_lite_inl.h:977)
+#    by 0x555CDA: blitz::mpu::proto::MpuMessage::InternalSerializeWithCachedSizesToArray(bool, unsigned char*) const (mps.pb.cc:3087)
+#    by 0x4F0EDC3: google::protobuf::MessageLite::SerializePartialToArray(void*, int) const (message_lite.cc:335)
+#    by 0x50E0CC: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:321)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZN6google8protobuf2io17CodedOutputStream20WriteVarint32ToArrayEjPh
+   fun:_ZN6google8protobuf8internal14WireFormatLite36InternalWriteMessageNoVirtualToArrayIN5blitz3mpu5proto10MpuRequestEEEPhiRKT_bS8_
+   fun:_ZNK5blitz3mpu5proto10MpuMessage39InternalSerializeWithCachedSizesToArrayEbPh
+   fun:_ZNK6google8protobuf11MessageLite23SerializePartialToArrayEPvi
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x56F6DC: google::protobuf::io::CodedOutputStream::WriteVarint64ToArray(unsigned long, unsigned char*) (coded_stream.h:1205)
+#    by 0x574BAC: google::protobuf::internal::WireFormatLite::WriteInt64NoTagToArray(long, unsigned char*) (wire_format_lite_inl.h:614)
+#    by 0x574C4A: google::protobuf::internal::WireFormatLite::WriteInt64ToArray(int, long, unsigned char*) (wire_format_lite_inl.h:773)
+#    by 0x5572CB: blitz::mpu::proto::MpuRequest::InternalSerializeWithCachedSizesToArray(bool, unsigned char*) const (mps.pb.cc:3615)
+#    by 0x577648: unsigned char* google::protobuf::internal::WireFormatLite::InternalWriteMessageNoVirtualToArray<blitz::mpu::proto::MpuRequest>(int, blitz::mpu::proto::MpuRequest const&, bool, unsigned char*) (wire_format_lite_inl.h:982)
+#    by 0x555CDA: blitz::mpu::proto::MpuMessage::InternalSerializeWithCachedSizesToArray(bool, unsigned char*) const (mps.pb.cc:3087)
+#    by 0x4F0EDC3: google::protobuf::MessageLite::SerializePartialToArray(void*, int) const (message_lite.cc:335)
+#    by 0x50E0CC: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:321)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZN6google8protobuf2io17CodedOutputStream20WriteVarint64ToArrayEmPh
+   fun:_ZN6google8protobuf8internal14WireFormatLite22WriteInt64NoTagToArrayElPh
+   fun:_ZN6google8protobuf8internal14WireFormatLite17WriteInt64ToArrayEilPh
+   fun:_ZNK5blitz3mpu5proto10MpuRequest39InternalSerializeWithCachedSizesToArrayEbPh
+   fun:_ZN6google8protobuf8internal14WireFormatLite36InternalWriteMessageNoVirtualToArrayIN5blitz3mpu5proto10MpuRequestEEEPhiRKT_bS8_
+   fun:_ZNK5blitz3mpu5proto10MpuMessage39InternalSerializeWithCachedSizesToArrayEbPh
+   fun:_ZNK6google8protobuf11MessageLite23SerializePartialToArrayEPvi
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4F0EDCD: google::protobuf::MessageLite::SerializePartialToArray(void*, int) const (message_lite.cc:336)
+#    by 0x50E0CC: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:321)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZNK6google8protobuf11MessageLite23SerializePartialToArrayEPvi
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x50F717: google::protobuf::internal::ToIntSize(unsigned long) (generated_message_util.h:212)
+#    by 0x50F7D8: google::protobuf::MessageLite::ByteSize() const (message_lite.h:252)
+#    by 0x50E122: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:325)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZN6google8protobuf8internal9ToIntSizeEm
+   fun:_ZNK6google8protobuf11MessageLite8ByteSizeEv
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C6EF: is_overlap (vg_replace_strmem.c:131)
+#    by 0x4C2C6EF: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:is_overlap
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2CA9B: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C758: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C8A3: is_overlap (vg_replace_strmem.c:131)
+#    by 0x4C2C8A3: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:is_overlap
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C8C8: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C84F: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C87F: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C889: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Syscall param sendto(len) contains uninitialised byte(s)
+#    at 0x5ABC93D: send (in /usr/lib64/libpthread-2.17.so)
+#    by 0x529C70: blitz::mpu::TransportModule::HandleMpsWrite() (transport.cc:202)
+#    by 0x52A7BC: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:361)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   sendto(len)
+   fun:send
+   fun:_ZN5blitz3mpu15TransportModule14HandleMpsWriteEv
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Syscall param socketcall.sendto(msg) points to uninitialised byte(s)
+#    at 0x5ABC93D: send (in /usr/lib64/libpthread-2.17.so)
+#    by 0x529C70: blitz::mpu::TransportModule::HandleMpsWrite() (transport.cc:202)
+#    by 0x52A7BC: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:361)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Address 0x635ca00 is 0 bytes inside a block of size 3,000 alloc'd
+#    at 0x4C28B68: operator new[](unsigned long) (vg_replace_malloc.c:433)
+#    by 0x50F4BD: blitz::mpu::BlitzBuffer::BlitzBuffer(ObjectPool<blitz::mpu::BlitzBuffer>*) (mpu_types.h:190)
+#    by 0x510C88: ObjectPool<blitz::mpu::BlitzBuffer>::get() (pooled_object.h:23)
+#    by 0x52A9AD: blitz::mpu::TransportModule::BlitzTcpBuffer::BlitzTcpBuffer(int) (transport.h:50)
+#    by 0x52A6C5: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:349)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E432: blitz::mpu::LocalConnection::SendMpuResponse(blitz::mpu::proto::MpuRequest&, blitz::mpu::proto::MpuResponse&) (local_connection.cc:356)
+#    by 0x50C69A: blitz::mpu::LocalConnection::handleRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:34)
+#    by 0x50D005: blitz::mpu::LocalConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (local_connection.cc:153)
+#    by 0x4FC77A: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:49)
+#    by 0x529B1B: blitz::mpu::TransportModule::HandleMpsRecv() (transport.cc:175)
+#    by 0x52A332: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:296)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   socketcall.sendto(msg)
+   fun:send
+   fun:_ZN5blitz3mpu15TransportModule14HandleMpsWriteEv
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x529CA4: blitz::mpu::TransportModule::HandleMpsWrite() (transport.cc:199)
+#    by 0x52A7BC: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:361)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZN5blitz3mpu15TransportModule14HandleMpsWriteEv
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Syscall param socketcall.sendto(msg) points to uninitialised byte(s)
+#    at 0x5ABCA43: __sendto_nocancel (in /usr/lib64/libpthread-2.17.so)
+#    by 0x52A57F: blitz::mpu::TransportModule::SendMedia(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:331)
+#    by 0x52A7D1: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:366)
+#    by 0x4F7121: blitz::mpu::BlitzConnection::SendBlitzPacket(ObjectPtr<blitz::mpu::BlitzPacket>&) (blitz_connection.cc:26)
+#    by 0x51F7B8: blitz::mpu::UserConnection::HandlePacketConnectedState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:178)
+#    by 0x51EFE7: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:72)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC77A: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:49)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#    by 0x52A401: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:306)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Address 0x636097c is 12 bytes inside a block of size 3,000 alloc'd
+#    at 0x4C28B68: operator new[](unsigned long) (vg_replace_malloc.c:433)
+#    by 0x50F4BD: blitz::mpu::BlitzBuffer::BlitzBuffer(ObjectPool<blitz::mpu::BlitzBuffer>*) (mpu_types.h:190)
+#    by 0x510C88: ObjectPool<blitz::mpu::BlitzBuffer>::get() (pooled_object.h:23)
+#    by 0x51F0F3: blitz::mpu::UserConnection::returnAccessResult(blitz::mpu::AccessResult) (user_connection.cc:94)
+#    by 0x51F2F2: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:112)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#    by 0x52A401: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:306)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28B68: operator new[](unsigned long) (vg_replace_malloc.c:433)
+#    by 0x50F4BD: blitz::mpu::BlitzBuffer::BlitzBuffer(ObjectPool<blitz::mpu::BlitzBuffer>*) (mpu_types.h:190)
+#    by 0x510C88: ObjectPool<blitz::mpu::BlitzBuffer>::get() (pooled_object.h:23)
+#    by 0x51F0F3: blitz::mpu::UserConnection::returnAccessResult(blitz::mpu::AccessResult) (user_connection.cc:94)
+#    by 0x51F2F2: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:112)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#    by 0x52A401: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:306)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   socketcall.sendto(msg)
+   fun:__sendto_nocancel
+   fun:_ZN5blitz3mpu15TransportModule9SendMediaER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection15SendBlitzPacketER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection26HandlePacketConnectedStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Use of uninitialised value of size 8
+#    at 0x4C2CA70: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value8
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Use of uninitialised value of size 8
+#    at 0x4C2CA73: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value8
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2CA7E: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x4FE413: blitz::mpu::ConnectionModule::OnTimer(blitz::mpu::TimerTask*) (connection.cc:438)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C284C3: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu16ConnectionModule7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+
+# Memcheck, a memory error detector
+# Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+# Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+# Command: /data/dubbo/blitz/mps/blitz_mpu 20000 8500
+# Parent PID: 27663
+# 
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4F0DD1F: google::protobuf::MessageLite::SerializePartialToArray(void*, int) const (message_lite.cc:333)
+#    by 0x50E0CC: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:321)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#    by 0x52A401: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:306)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZNK6google8protobuf11MessageLite23SerializePartialToArrayEPvi
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x56F698: google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(unsigned int, unsigned char*) (coded_stream.h:1194)
+#    by 0x57762E: unsigned char* google::protobuf::internal::WireFormatLite::InternalWriteMessageNoVirtualToArray<blitz::mpu::proto::MpuRequest>(int, blitz::mpu::proto::MpuRequest const&, bool, unsigned char*) (wire_format_lite_inl.h:977)
+#    by 0x555CDA: blitz::mpu::proto::MpuMessage::InternalSerializeWithCachedSizesToArray(bool, unsigned char*) const (mps.pb.cc:3087)
+#    by 0x4F0DD43: google::protobuf::MessageLite::SerializePartialToArray(void*, int) const (message_lite.cc:335)
+#    by 0x50E0CC: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:321)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZN6google8protobuf2io17CodedOutputStream20WriteVarint32ToArrayEjPh
+   fun:_ZN6google8protobuf8internal14WireFormatLite36InternalWriteMessageNoVirtualToArrayIN5blitz3mpu5proto10MpuRequestEEEPhiRKT_bS8_
+   fun:_ZNK5blitz3mpu5proto10MpuMessage39InternalSerializeWithCachedSizesToArrayEbPh
+   fun:_ZNK6google8protobuf11MessageLite23SerializePartialToArrayEPvi
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x56F6DC: google::protobuf::io::CodedOutputStream::WriteVarint64ToArray(unsigned long, unsigned char*) (coded_stream.h:1205)
+#    by 0x574BAC: google::protobuf::internal::WireFormatLite::WriteInt64NoTagToArray(long, unsigned char*) (wire_format_lite_inl.h:614)
+#    by 0x574C4A: google::protobuf::internal::WireFormatLite::WriteInt64ToArray(int, long, unsigned char*) (wire_format_lite_inl.h:773)
+#    by 0x5572CB: blitz::mpu::proto::MpuRequest::InternalSerializeWithCachedSizesToArray(bool, unsigned char*) const (mps.pb.cc:3615)
+#    by 0x577648: unsigned char* google::protobuf::internal::WireFormatLite::InternalWriteMessageNoVirtualToArray<blitz::mpu::proto::MpuRequest>(int, blitz::mpu::proto::MpuRequest const&, bool, unsigned char*) (wire_format_lite_inl.h:982)
+#    by 0x555CDA: blitz::mpu::proto::MpuMessage::InternalSerializeWithCachedSizesToArray(bool, unsigned char*) const (mps.pb.cc:3087)
+#    by 0x4F0DD43: google::protobuf::MessageLite::SerializePartialToArray(void*, int) const (message_lite.cc:335)
+#    by 0x50E0CC: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:321)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZN6google8protobuf2io17CodedOutputStream20WriteVarint64ToArrayEmPh
+   fun:_ZN6google8protobuf8internal14WireFormatLite22WriteInt64NoTagToArrayElPh
+   fun:_ZN6google8protobuf8internal14WireFormatLite17WriteInt64ToArrayEilPh
+   fun:_ZNK5blitz3mpu5proto10MpuRequest39InternalSerializeWithCachedSizesToArrayEbPh
+   fun:_ZN6google8protobuf8internal14WireFormatLite36InternalWriteMessageNoVirtualToArrayIN5blitz3mpu5proto10MpuRequestEEEPhiRKT_bS8_
+   fun:_ZNK5blitz3mpu5proto10MpuMessage39InternalSerializeWithCachedSizesToArrayEbPh
+   fun:_ZNK6google8protobuf11MessageLite23SerializePartialToArrayEPvi
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4F0DD4D: google::protobuf::MessageLite::SerializePartialToArray(void*, int) const (message_lite.cc:336)
+#    by 0x50E0CC: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:321)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#    by 0x52A401: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:306)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZNK6google8protobuf11MessageLite23SerializePartialToArrayEPvi
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x50F717: google::protobuf::internal::ToIntSize(unsigned long) (generated_message_util.h:212)
+#    by 0x50F7D8: google::protobuf::MessageLite::ByteSize() const (message_lite.h:252)
+#    by 0x50E122: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:325)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#    by 0x52A401: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:306)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZN6google8protobuf8internal9ToIntSizeEm
+   fun:_ZNK6google8protobuf11MessageLite8ByteSizeEv
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C7BF: is_overlap (vg_replace_strmem.c:131)
+#    by 0x4C2C7BF: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:is_overlap
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C7DB: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C828: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C91F: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C94F: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2C959: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+}
+# Use of uninitialised value of size 8
+#    at 0x4C2CB40: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value8
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+}
+# Use of uninitialised value of size 8
+#    at 0x4C2CB43: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value8
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4C2CB4E: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1035)
+#    by 0x52A771: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:357)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:memcpy@@GLIBC_2.14
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+}
+# Syscall param sendto(len) contains uninitialised byte(s)
+#    at 0x5AB993D: send (in /usr/lib64/libpthread-2.17.so)
+#    by 0x529C70: blitz::mpu::TransportModule::HandleMpsWrite() (transport.cc:202)
+#    by 0x52A7BC: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:361)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   sendto(len)
+   fun:send
+   fun:_ZN5blitz3mpu15TransportModule14HandleMpsWriteEv
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+}
+# Syscall param socketcall.sendto(msg) points to uninitialised byte(s)
+#    at 0x5AB993D: send (in /usr/lib64/libpthread-2.17.so)
+#    by 0x529C70: blitz::mpu::TransportModule::HandleMpsWrite() (transport.cc:202)
+#    by 0x52A7BC: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:361)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#  Address 0x6354b70 is 0 bytes inside a block of size 3,000 alloc'd
+#    at 0x4C28C38: operator new[](unsigned long) (vg_replace_malloc.c:433)
+#    by 0x50F4BD: blitz::mpu::BlitzBuffer::BlitzBuffer(ObjectPool<blitz::mpu::BlitzBuffer>*) (mpu_types.h:190)
+#    by 0x510C88: ObjectPool<blitz::mpu::BlitzBuffer>::get() (pooled_object.h:23)
+#    by 0x52A9AD: blitz::mpu::TransportModule::BlitzTcpBuffer::BlitzTcpBuffer(int) (transport.h:50)
+#    by 0x52A6C5: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:349)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E432: blitz::mpu::LocalConnection::SendMpuResponse(blitz::mpu::proto::MpuRequest&, blitz::mpu::proto::MpuResponse&) (local_connection.cc:356)
+#    by 0x50C69A: blitz::mpu::LocalConnection::handleRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:34)
+#    by 0x50D005: blitz::mpu::LocalConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (local_connection.cc:153)
+#    by 0x4FC77A: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:49)
+#    by 0x529B1B: blitz::mpu::TransportModule::HandleMpsRecv() (transport.cc:175)
+#    by 0x52A332: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:296)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   socketcall.sendto(msg)
+   fun:send
+   fun:_ZN5blitz3mpu15TransportModule14HandleMpsWriteEv
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x529CA4: blitz::mpu::TransportModule::HandleMpsWrite() (transport.cc:199)
+#    by 0x52A7BC: blitz::mpu::TransportModule::SendPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (transport.cc:361)
+#    by 0x4FD9A8: blitz::mpu::ConnectionModule::SendTransportPacket(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:229)
+#    by 0x50E16B: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:328)
+#    by 0x50DF91: blitz::mpu::LocalConnection::RequestAccess(unsigned long) (local_connection.cc:310)
+#    by 0x4FD9D5: blitz::mpu::ConnectionModule::RequestAccess(unsigned long) (connection.cc:232)
+#    by 0x51F339: blitz::mpu::UserConnection::HandlePacketConnectingState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:117)
+#    by 0x51F077: blitz::mpu::UserConnection::HandlePacketNoneState(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:84)
+#    by 0x51EFBD: blitz::mpu::UserConnection::OnBlitzPacketParsed(ObjectPtr<blitz::mpu::BlitzPacket>&) (user_connection.cc:66)
+#    by 0x4F724B: blitz::mpu::BlitzConnection::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (blitz_connection.cc:40)
+#    by 0x4FC8B1: blitz::mpu::ConnectionModule::OnNetPacketReceived(ObjectPtr<blitz::mpu::TransportPacket>&) (connection.cc:65)
+#    by 0x529E56: blitz::mpu::TransportModule::HandleMediaRecv() (transport.cc:239)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZN5blitz3mpu15TransportModule14HandleMpsWriteEv
+   fun:_ZN5blitz3mpu15TransportModule10SendPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19SendTransportPacketER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu15LocalConnection13RequestAccessEm
+   fun:_ZN5blitz3mpu16ConnectionModule13RequestAccessEm
+   fun:_ZN5blitz3mpu14UserConnection27HandlePacketConnectingStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection21HandlePacketNoneStateER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu14UserConnection19OnBlitzPacketParsedER9ObjectPtrINS0_11BlitzPacketEE
+   fun:_ZN5blitz3mpu15BlitzConnection19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu16ConnectionModule19OnNetPacketReceivedER9ObjectPtrINS0_15TransportPacketEE
+   fun:_ZN5blitz3mpu15TransportModule15HandleMediaRecvEv
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4F0DD1F: google::protobuf::MessageLite::SerializePartialToArray(void*, int) const (message_lite.cc:333)
+#    by 0x50E0CC: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:321)
+#    by 0x51A2DD: blitz::mpu::MpuConnection::OnTimer(blitz::mpu::TimerTask*) (mpu_connection.cc:175)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZNK6google8protobuf11MessageLite23SerializePartialToArrayEPvi
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu13MpuConnection7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x4F0DD4D: google::protobuf::MessageLite::SerializePartialToArray(void*, int) const (message_lite.cc:336)
+#    by 0x50E0CC: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:321)
+#    by 0x51A2DD: blitz::mpu::MpuConnection::OnTimer(blitz::mpu::TimerTask*) (mpu_connection.cc:175)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZNK6google8protobuf11MessageLite23SerializePartialToArrayEPvi
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu13MpuConnection7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
+# Conditional jump or move depends on uninitialised value(s)
+#    at 0x50F717: google::protobuf::internal::ToIntSize(unsigned long) (generated_message_util.h:212)
+#    by 0x50F7D8: google::protobuf::MessageLite::ByteSize() const (message_lite.h:252)
+#    by 0x50E122: blitz::mpu::LocalConnection::SendMpuRequest(blitz::mpu::proto::MpuRequest&) (local_connection.cc:325)
+#    by 0x51A2DD: blitz::mpu::MpuConnection::OnTimer(blitz::mpu::TimerTask*) (mpu_connection.cc:175)
+#    by 0x54528A: blitz::mpu::MpuCore::OnTimer(unsigned long) (core.cc:138)
+#    by 0x52A2D5: blitz::mpu::TransportModule::Start(unsigned short) (transport.cc:293)
+#    by 0x544C5C: blitz::mpu::MpuCore::Serve(unsigned short) (core.cc:90)
+#    by 0x54F352: main (main.cc:18)
+#  Uninitialised value was created by a heap allocation
+#    at 0x4C28593: operator new(unsigned long) (vg_replace_malloc.c:344)
+#    by 0x4FC30B: blitz::mpu::ConnectionModule::ConnectionModule(blitz::mpu::MpuCore*, unsigned short, unsigned int) (connection.cc:24)
+#    by 0x544E7D: blitz::mpu::MpuCore::MpuCore(unsigned int, unsigned short) (core.cc:95)
+#    by 0x54F33D: main (main.cc:17)
+# 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_ZN6google8protobuf8internal9ToIntSizeEm
+   fun:_ZNK6google8protobuf11MessageLite8ByteSizeEv
+   fun:_ZN5blitz3mpu15LocalConnection14SendMpuRequestERNS0_5proto10MpuRequestE
+   fun:_ZN5blitz3mpu13MpuConnection7OnTimerEPNS0_9TimerTaskE
+   fun:_ZN5blitz3mpu7MpuCore7OnTimerEm
+   fun:_ZN5blitz3mpu15TransportModule5StartEt
+   fun:_ZN5blitz3mpu7MpuCore5ServeEt
+   fun:main
+}
