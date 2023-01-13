@@ -1,0 +1,192 @@
+
+
+ digraph G {
+ node[fontname="FangSong" shape=record];
+ edge[fontname="FangSong"];
+ graph[fontname="FangSong"];
+ //clusterrank=local;
+rankdir="LR";
+ subgraph cluster_r0 {
+     label ="buddy allocator algorithm";
+	 style=bold;
+	   
+	
+	 	 subgraph cluster_r0_a0 {
+		 label ="图一:初始状态";
+		 style=bold;
+		 rankdir="TB";
+		 
+		 n00001_0[label="00001/0"];
+         n00010_1[label="00010/1"];
+         n00011_1[label="00011/1"];
+         n00100_2[label="00100/2"];
+         n00101_2[label="00101/2"];
+         n00110_2[label="00110/2"];
+         n00111_2[label="00111/2"];
+         n01000_3[label="01000/3"];
+         n01001_3[label="01001/3"];
+         n01010_3[label="01010/3"];
+         n01011_3[label="01011/3"];
+         n01100_3[label="01100/3"];
+         n01101_3[label="01101/3"];
+         n01110_3[label="01110/3"];
+         n01111_3[label="01111/3"];
+		 
+		 n00001_0->n00010_1;
+		 n00001_0->n00011_1;
+		 
+		 n00010_1->n00100_2;
+		 n00010_1->n00101_2;
+		 
+		 n00011_1->n00110_2;
+		 n00011_1->n00111_2;
+		 n00100_2->n01000_3;
+		 n00100_2->n01001_3;
+		 n00101_2->n01010_3;
+		 n00101_2->n01011_3;
+		 
+		 n00110_2->n01100_3;
+		 n00110_2->n01101_3;
+		 n00111_2->n01110_3;
+		 n00111_2->n01111_3;
+		 
+		 
+     }
+
+	 
+	 	 subgraph cluster_r0_a1 {
+		 label ="图二:被使用的状态";
+		 style=bold;
+		 rankdir="TB";
+	
+		 
+		 m00001_0[label="00001/1", color=lightblue2, style=filled];
+         m00010_1[label="00010/2", color=lightblue2, style=filled];
+         m00011_1[label="00011/1"];
+         m00100_2[label="00100/3", color=lightblue2, style=filled];
+         m00101_2[label="00101/2"];
+         m00110_2[label="00110/2"];
+         m00111_2[label="00111/2"];
+         m01000_3[label="01000/4", color=lightblue2, style=filled];
+         m01001_3[label="01001/3"];
+         m01010_3[label="01010/3"];
+         m01011_3[label="01011/3"];
+         m01100_3[label="01100/3"];
+         m01101_3[label="01101/3"];
+         m01110_3[label="01110/3"];
+         m01111_3[label="01111/3"];
+		 
+		 m00001_0->m00010_1;
+		 m00001_0->m00011_1;
+		 
+		 m00010_1->m00100_2;
+		 m00010_1->m00101_2;
+		 
+		 m00011_1->m00110_2;
+		 m00011_1->m00111_2;
+		 m00100_2->m01000_3;
+		 m00100_2->m01001_3;
+		 m00101_2->m01010_3;
+		 m00101_2->m01011_3;
+		 
+		 m00110_2->m01100_3;
+		 m00110_2->m01101_3;
+		 m00111_2->m01110_3;
+		 m00111_2->m01111_3;
+		 
+		 
+     }
+	 
+
+	 
+	 	 subgraph cluster_r0_a2 {
+		 label ="图三:要分配连续两块，则在第三层分配";
+		 style=bold;
+		 rankdir="TB";
+		 
+		 
+		 p00001_0[label="00001/1 \n 1. 1\<3 满足 移到左节点", color=red, style=filled];
+         p00010_1[label="00010/2 \n 2. 2\<3 满足 移到左节点", color=red, style=filled];
+         p00011_1[label="00011/1"];
+         p00100_2[label="00100/3", color=lightblue2, style=filled];
+         p00101_2[label="00101/4\n 3. 2\<3 这一层进行分配\n 分配后更新为4", color=red, style=filled];
+         p00110_2[label="00110/2"];
+         p00111_2[label="00111/2"];
+         p01000_3[label="01000/4", color=lightblue2, style=filled];
+         p01001_3[label="01001/3"];
+         p01010_3[label="01010/3"];
+         p01011_3[label="01011/3"];
+         p01100_3[label="01100/3"];
+         p01101_3[label="01101/3"];
+         p01110_3[label="01110/3"];
+         p01111_3[label="01111/3"];
+		 
+		 p00001_0->p00010_1;
+		 p00001_0->p00011_1;
+		 
+		 p00010_1->p00100_2;
+		 p00010_1->p00101_2;
+		 
+		 p00011_1->p00110_2;
+		 p00011_1->p00111_2;
+		 p00100_2->p01000_3;
+		 p00100_2->p01001_3;
+		 p00101_2->p01010_3;
+		 p00101_2->p01011_3;
+		 
+		 p00110_2->p01100_3;
+		 p00110_2->p01101_3;
+		 p00111_2->p01110_3;
+		 p00111_2->p01111_3;
+		 
+		 
+     }
+	 
+	 	 subgraph cluster_r0_a3 {
+		 label ="图四:最终状态";
+		 style=bold;
+		 rankdir="TB";
+		 
+		 q00001_0[label="00001/1", color=lightblue2, style=filled];
+         q00010_1[label="00010/3", color=lightblue2, style=filled];
+         q00011_1[label="00011/1"];
+         q00100_2[label="00100/3", color=lightblue2, style=filled];
+         q00101_2[label="00101/4\n4", color=lightblue2, style=filled];
+         q00110_2[label="00110/2"];
+         q00111_2[label="00111/2"];
+         q01000_3[label="01000/4", color=lightblue2, style=filled];
+         q01001_3[label="01001/3"];
+         q01010_3[label="01010/3"];
+         q01011_3[label="01011/3"];
+         q01100_3[label="01100/3"];
+         q01101_3[label="01101/3"];
+         q01110_3[label="01110/3"];
+         q01111_3[label="01111/3"];
+		 
+		 q00001_0->q00010_1;
+		 q00001_0->q00011_1;
+		 
+		 q00010_1->q00100_2;
+		 q00010_1->q00101_2;
+		 
+		 q00011_1->q00110_2;
+		 q00011_1->q00111_2;
+		 q00100_2->q01000_3;
+		 q00100_2->q01001_3;
+		 q00101_2->q01010_3;
+		 q00101_2->q01011_3;
+		 
+		 q00110_2->q01100_3;
+		 q00110_2->q01101_3;
+		 q00111_2->q01110_3;
+		 q00111_2->q01111_3;
+		 		 
+     }
+	 
+
+
+	 
+   }
+ }
+
+ 
