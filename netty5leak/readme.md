@@ -83,7 +83,7 @@ PooledByteBuf 的使用过程使用引用计数进行追踪，release时并不�
 对于每一个 poolarena,都有tiny和small两个内存池，使用数组的方式进行存储 一个 chunklist 的双向列表。 以及在全局分配器中为每一个线程保留两个page cache ，tiny和small。
 
 具体关系 见图， 
-![运行时内存区](./runtime_memory_layout.png "运行时内存区")
+![运行时内存区](./runtime_memory_layout.png "运行时内存区")  
 高清无码版执行命令:
 ` dot -Tsvg -o runtime_memory_layout.svg runtime_memory_layout.dot `
 
