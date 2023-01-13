@@ -492,9 +492,6 @@ PoolSubpage:f1->PoolChunk;
 
 
 
-
-
-
 # Reference
 这篇文章的所有图片都是用文本生成的，你需要安装以下的渲染工具
 - [graphviz ](http://graphviz.org "graphviz ")  结构图和关系图的生成工具
