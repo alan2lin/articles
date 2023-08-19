@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{xeCJK}           %中文支持
+
+\begin{document}
+	
+	\begin{tikzpicture}
+		% 绘制坐标轴
+		\draw[->] (-6,0) -- (6,0) node[right] {$\Re$};
+		\draw[->] (0,-6) -- (0,6) node[above] {$\Im$};
+		
+		% 添加坐标轴刻度
+		\foreach \x in {-5,-4,-3,-2,-1,1,2,3,4,5}
+		\draw (\x, 0.1) -- (\x, -0.1) node[below] {\x};
+		\foreach \y in {-5,-4,-3,-2,-1,1,2,3,4,5}
+		\draw (0.1, \y) -- (-0.1, \y) node[left] {\y};
+		
+		% 原始复数 3 + 5i
+		\fill (3, 5) circle[radius=3pt] node[above right,align=left] {$(3,5i)$ \\|3|+|5|i\\ xRy \\原关系点位 };
+		\draw[->, thick, blue] (0, 0) -- (3, 5);
+		\draw[dashed, gray] (0, 5) -- (3, 5) -- (3, 0);
+		
+		% 旋转 90 度后的复数
+		\fill (-5, 3) circle[radius=3pt] node[above left,align=left] {$(-5,3i)$ \\ -(|5|-|3|i)\\x$R^{-1}$y \\对称关系的逆点位\\逆关系的对称点位\\简称对称逆点位 };
+		\draw[->, dashed, red] (0, 0) -- (-5, 3);
+		\draw[dashed, gray] (0, 3) -- (-5, 3) -- (-5, 0);
+		
+		% 旋转 180 度后的复数
+		\fill (-3, -5) circle[radius=3pt] node[left,align=left] {$(-3,-5i)$\\-(|3|+|5|i)\\ yRx \\对称点位};
+		\draw[->, dashed, green] (0, 0) -- (-3, -5);
+		\draw[dashed, gray] (0, -5) -- (-3, -5) -- (-3, 0);
+		
+		% 旋转 270 度后的复数
+		\fill (5, -3) circle[radius=3pt] node[below,align=left] {$(5,-3i)$ \\|5|-|3|i \\y$R^{-1}$x \\逆关系点位};
+		\draw[->, dashed, purple] (0, 0) -- (5, -3);
+		\draw[dashed, gray] (0, -3) -- (5, -3) -- (5, 0);
+		
+		 % 绘制虚线圆
+		\draw[dashed] (0,0) circle[radius={sqrt(3^2 + 5^2)}];
+	\end{tikzpicture}
+	
+\end{document}
